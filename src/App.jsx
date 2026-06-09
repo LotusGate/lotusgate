@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Coffee, Star, ShoppingCart, RotateCcw, Send, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { Coffee, Mail, MapPin, Send, Sparkles, Star, ShoppingBag } from "lucide-react";
 import "./styles.css";
 
 const coffees = [
@@ -9,81 +8,53 @@ const coffees = [
     id: 1,
     name: "Da Lat Arabica Honey Process",
     origin: "Da Lat, Vietnam",
-    bean: "Arabica",
     roast: "Medium",
     notes: ["honey", "citrus", "floral"],
+    sweetness: 5,
     bitterness: 2,
     acidity: 4,
-    sweetness: 5,
     body: 3,
     caffeine: 3,
-    brewMethods: ["Pour-over", "Drip", "French Press"],
-    price: 18,
-    description: "A premium Vietnamese Arabica with bright acidity, natural sweetness, and a clean finish."
+    description: "A bright, elegant Vietnamese Arabica for people who enjoy sweetness, aroma, and a clean finish."
   },
   {
     id: 2,
-    name: "Buon Ma Thuot Robusta Dark Roast",
-    origin: "Dak Lak, Vietnam",
-    bean: "Robusta",
+    name: "Central Highlands Robusta",
+    origin: "Buon Ma Thuot, Vietnam",
     roast: "Dark",
     notes: ["dark chocolate", "bold", "nutty"],
+    sweetness: 2,
     bitterness: 5,
     acidity: 1,
-    sweetness: 2,
     body: 5,
     caffeine: 5,
-    brewMethods: ["Phin", "Espresso", "French Press"],
-    price: 15,
-    description: "A bold, high-caffeine robusta ideal for Vietnamese iced coffee and strong morning brews."
+    description: "A strong, high-caffeine profile inspired by traditional Vietnamese coffee culture."
   },
   {
     id: 3,
-    name: "Vietnamese Phin Blend",
-    origin: "Central Highlands, Vietnam",
-    bean: "Arabica + Robusta",
+    name: "Saigon Phin Blend",
+    origin: "Vietnam",
     roast: "Medium-Dark",
     notes: ["chocolate", "caramel", "roasted nuts"],
+    sweetness: 4,
     bitterness: 4,
     acidity: 2,
-    sweetness: 4,
     body: 5,
     caffeine: 4,
-    brewMethods: ["Phin", "Espresso", "Drip"],
-    price: 16,
-    description: "A balanced blend designed for traditional Vietnamese phin brewing and condensed milk coffee."
+    description: "A balanced blend designed for phin brewing, iced coffee, and a rich daily cup."
   },
   {
     id: 4,
-    name: "Light Roast Floral Arabica",
-    origin: "Lam Dong, Vietnam",
-    bean: "Arabica",
-    roast: "Light",
-    notes: ["jasmine", "berry", "tea-like"],
-    bitterness: 1,
-    acidity: 5,
-    sweetness: 4,
-    body: 2,
-    caffeine: 3,
-    brewMethods: ["Pour-over", "Aeropress"],
-    price: 20,
-    description: "A delicate specialty coffee for customers who enjoy fruity, floral, and lighter profiles."
-  },
-  {
-    id: 5,
-    name: "Low-Acidity Smooth Blend",
+    name: "Hanoi Morning Blend",
     origin: "Vietnam",
-    bean: "Arabica + Robusta",
     roast: "Medium",
-    notes: ["milk chocolate", "almond", "brown sugar"],
-    bitterness: 3,
-    acidity: 1,
+    notes: ["brown sugar", "almond", "smooth"],
     sweetness: 4,
+    bitterness: 3,
+    acidity: 2,
     body: 4,
     caffeine: 3,
-    brewMethods: ["Drip", "Phin", "French Press"],
-    price: 17,
-    description: "A smooth, low-acidity option for customers who want comfort, sweetness, and balance."
+    description: "A smooth, approachable profile for customers who prefer a lower-acidity morning coffee."
   }
 ];
 
@@ -93,9 +64,7 @@ const defaultProfile = {
   acidity: 3,
   body: 3,
   caffeine: 3,
-  preferredRoast: "Medium",
-  brewMethod: "Phin",
-  flavorFamily: "chocolate",
+  brew: "Phin",
   goal: "Daily coffee"
 };
 
@@ -106,11 +75,9 @@ function scoreCoffee(coffee, profile) {
   score -= Math.abs(coffee.acidity - Number(profile.acidity)) * 8;
   score -= Math.abs(coffee.body - Number(profile.body)) * 7;
   score -= Math.abs(coffee.caffeine - Number(profile.caffeine)) * 7;
-
-  if (coffee.roast.toLowerCase().includes(profile.preferredRoast.toLowerCase())) score += 15;
-  if (coffee.brewMethods.includes(profile.brewMethod)) score += 15;
-  if (coffee.notes.some((n) => n.toLowerCase().includes(profile.flavorFamily.toLowerCase()))) score += 10;
-
+  if (profile.goal === "High caffeine" && coffee.caffeine >= 4) score += 12;
+  if (profile.goal === "Low acidity" && coffee.acidity <= 2) score += 12;
+  if (profile.brew === "Phin" && coffee.name.toLowerCase().includes("phin")) score += 10;
   return Math.max(0, Math.min(100, Math.round(score)));
 }
 
@@ -122,175 +89,119 @@ function Slider({ label, value, onChange, left, right }) {
         <strong>{value}/5</strong>
       </div>
       <input type="range" min="1" max="5" value={value} onChange={(e) => onChange(e.target.value)} />
-      <div className="sliderLabels">
-        <small>{left}</small>
-        <small>{right}</small>
-      </div>
+      <div className="sliderLabels"><small>{left}</small><small>{right}</small></div>
     </label>
   );
 }
 
 function App() {
   const [profile, setProfile] = useState(defaultProfile);
-  const [feedback, setFeedback] = useState({});
   const [submitted, setSubmitted] = useState(false);
-
-  const ranked = useMemo(() => {
-    return coffees
-      .map((coffee) => ({ ...coffee, match: scoreCoffee(coffee, profile) }))
-      .sort((a, b) => b.match - a.match);
-  }, [profile]);
-
+  const ranked = useMemo(() => coffees.map(c => ({ ...c, match: scoreCoffee(c, profile) })).sort((a, b) => b.match - a.match), [profile]);
   const top = ranked[0];
-
-  function updateField(field, value) {
-    setProfile((prev) => ({ ...prev, [field]: value }));
-  }
-
-  function saveFeedback(coffeeId, rating) {
-    setFeedback((prev) => ({ ...prev, [coffeeId]: rating }));
-  }
+  const update = (field, value) => setProfile(prev => ({ ...prev, [field]: value }));
 
   return (
-    <main className="app">
-      <section className="hero">
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="badge"><Sparkles size={16} /> AI Taste Profile Prototype</div>
-          <h1>Personalized Vietnamese Coffee Subscription</h1>
+    <main>
+      <header className="nav">
+        <a className="brand" href="#top" aria-label="Lotus Gate home">
+          <img src="/lotus-gate-logo.png" alt="Lotus Gate logo" />
+          <span>Lotus Gate</span>
+        </a>
+        <nav>
+          <a href="#story">Story</a>
+          <a href="#quiz">Taste Quiz</a>
+          <a href="#waitlist">Waitlist</a>
+        </nav>
+      </header>
+
+      <section className="hero" id="top">
+        <div className="heroText">
+          <div className="eyebrow"><Sparkles size={16} /> AI-powered coffee discovery</div>
+          <h1>Premium Vietnamese coffee, curated for your taste.</h1>
           <p>
-            Match customers with Vietnamese coffee based on taste preference, brew method,
-            caffeine level, and flavor profile.
+            Lotus Gate connects authentic Vietnamese coffee culture with an intelligent taste profile experience,
+            helping customers discover the roast, origin, and flavor profile that fits them best.
           </p>
-        </motion.div>
-      </section>
-
-      <section className="grid">
-        <div className="card">
-          <h2><Coffee size={22} /> Taste Quiz</h2>
-
-          <Slider label="Sweetness" value={profile.sweetness} onChange={(v) => updateField("sweetness", v)} left="Dry" right="Sweet" />
-          <Slider label="Bitterness" value={profile.bitterness} onChange={(v) => updateField("bitterness", v)} left="Mild" right="Bold" />
-          <Slider label="Acidity" value={profile.acidity} onChange={(v) => updateField("acidity", v)} left="Low" right="Bright" />
-          <Slider label="Body" value={profile.body} onChange={(v) => updateField("body", v)} left="Light" right="Full" />
-          <Slider label="Caffeine" value={profile.caffeine} onChange={(v) => updateField("caffeine", v)} left="Gentle" right="Strong" />
-
-          <div className="formRow">
-            <label>
-              Preferred roast
-              <select value={profile.preferredRoast} onChange={(e) => updateField("preferredRoast", e.target.value)}>
-                <option>Light</option>
-                <option>Medium</option>
-                <option>Medium-Dark</option>
-                <option>Dark</option>
-              </select>
-            </label>
-
-            <label>
-              Brew method
-              <select value={profile.brewMethod} onChange={(e) => updateField("brewMethod", e.target.value)}>
-                <option>Phin</option>
-                <option>Pour-over</option>
-                <option>Espresso</option>
-                <option>Drip</option>
-                <option>French Press</option>
-                <option>Aeropress</option>
-              </select>
-            </label>
+          <div className="heroActions">
+            <a className="primaryBtn" href="#quiz">Find Your Coffee</a>
+            <a className="secondaryBtn" href="#story">Learn the Story</a>
           </div>
-
-          <div className="formRow">
-            <label>
-              Favorite flavor
-              <select value={profile.flavorFamily} onChange={(e) => updateField("flavorFamily", e.target.value)}>
-                <option>chocolate</option>
-                <option>caramel</option>
-                <option>nutty</option>
-                <option>citrus</option>
-                <option>floral</option>
-                <option>berry</option>
-              </select>
-            </label>
-
-            <label>
-              Main goal
-              <select value={profile.goal} onChange={(e) => updateField("goal", e.target.value)}>
-                <option>Daily coffee</option>
-                <option>Vietnamese iced coffee</option>
-                <option>Specialty tasting</option>
-                <option>High caffeine</option>
-                <option>Low acidity</option>
-              </select>
-            </label>
-          </div>
-
-          <button className="primaryBtn" onClick={() => setSubmitted(true)}>
-            <Send size={18} /> Generate Recommendation
-          </button>
-
-          <button className="secondaryBtn" onClick={() => { setProfile(defaultProfile); setSubmitted(false); setFeedback({}); }}>
-            <RotateCcw size={16} /> Reset
-          </button>
         </div>
-
-        <div className="card resultCard">
-          <h2><Star size={22} /> Best Match</h2>
-          {submitted ? (
-            <>
-              <div className="matchCircle">{top.match}%</div>
-              <h3>{top.name}</h3>
-              <p className="muted">{top.origin} • {top.bean} • {top.roast}</p>
-              <p>{top.description}</p>
-              <div className="chips">
-                {top.notes.map((note) => <span key={note}>{note}</span>)}
-              </div>
-              <div className="subscriptionBox">
-                <strong>Suggested subscription:</strong>
-                <p>Ship one 12 oz bag every 2 weeks. Estimated price: ${top.price}/bag.</p>
-              </div>
-              <button className="primaryBtn"><ShoppingCart size={18} /> Add to Subscription</button>
-            </>
-          ) : (
-            <p className="placeholder">Complete the quiz and generate a recommendation.</p>
-          )}
+        <div className="logoCard">
+          <img src="/lotus-gate-logo.png" alt="Lotus Gate lotus and gate logo" />
         </div>
       </section>
 
-      <section className="card">
-        <h2>Ranked Coffee Recommendations</h2>
-        <div className="coffeeList">
-          {ranked.map((coffee) => (
-            <div className="coffeeItem" key={coffee.id}>
-              <div>
-                <h3>{coffee.name}</h3>
-                <p className="muted">{coffee.origin} • {coffee.roast} • ${coffee.price}</p>
-                <div className="chips">
-                  {coffee.notes.map((note) => <span key={note}>{note}</span>)}
-                </div>
-              </div>
-              <div className="rightPanel">
-                <strong>{coffee.match}% match</strong>
-                <select value={feedback[coffee.id] || ""} onChange={(e) => saveFeedback(coffee.id, e.target.value)}>
-                  <option value="">Rate after trying</option>
-                  <option value="5">Loved it</option>
-                  <option value="4">Good</option>
-                  <option value="3">Okay</option>
-                  <option value="2">Not for me</option>
-                  <option value="1">Disliked it</option>
-                </select>
-              </div>
-            </div>
-          ))}
-        </div>
+      <section className="section threeCards">
+        <article className="infoCard"><Coffee /><h3>Vietnamese Origin</h3><p>Inspired by coffee from Vietnam and future sourcing from farms, roasters, and exporters.</p></article>
+        <article className="infoCard"><Star /><h3>Premium Taste</h3><p>Designed around specialty profiles such as Da Lat Arabica, robusta blends, and phin-style coffee.</p></article>
+        <article className="infoCard"><ShoppingBag /><h3>Subscription Ready</h3><p>Built toward a future personalized coffee subscription and e-commerce experience.</p></article>
       </section>
 
-      <section className="card">
-        <h2>Prototype Notes</h2>
+      <section className="section story" id="story">
+        <div>
+          <div className="eyebrow"><MapPin size={16} /> Our beginning</div>
+          <h2>From a gift of Vietnamese coffee to a new idea.</h2>
+        </div>
         <p>
-          This version uses rule-based scoring. For a real business, store customer profiles,
-          purchase history, and ratings in a database, then replace the scoring function with a
-          machine-learning recommendation model once you have enough feedback data.
+          Lotus Gate began with a simple memory: coffee shared by a friend in Vietnam. That experience became
+          the starting point for a broader vision—bringing premium Vietnamese coffee to the U.S. market and using
+          AI to help each customer discover the coffee that best matches their preferences.
         </p>
       </section>
+
+      <section className="section quizSection" id="quiz">
+        <div className="quizIntro">
+          <div className="eyebrow"><Sparkles size={16} /> Taste profile prototype</div>
+          <h2>Find your Vietnamese coffee match.</h2>
+          <p>Adjust your taste preferences and generate a recommendation. This is the first prototype of the Lotus Gate AI taste engine.</p>
+        </div>
+        <div className="grid">
+          <div className="card">
+            <h3>Taste Quiz</h3>
+            <Slider label="Sweetness" value={profile.sweetness} onChange={(v) => update("sweetness", v)} left="Dry" right="Sweet" />
+            <Slider label="Bitterness" value={profile.bitterness} onChange={(v) => update("bitterness", v)} left="Mild" right="Bold" />
+            <Slider label="Acidity" value={profile.acidity} onChange={(v) => update("acidity", v)} left="Low" right="Bright" />
+            <Slider label="Body" value={profile.body} onChange={(v) => update("body", v)} left="Light" right="Full" />
+            <Slider label="Caffeine" value={profile.caffeine} onChange={(v) => update("caffeine", v)} left="Gentle" right="Strong" />
+            <div className="formRow">
+              <label>Brew method<select value={profile.brew} onChange={(e) => update("brew", e.target.value)}><option>Phin</option><option>Drip</option><option>Espresso</option><option>Pour-over</option><option>French Press</option></select></label>
+              <label>Main goal<select value={profile.goal} onChange={(e) => update("goal", e.target.value)}><option>Daily coffee</option><option>Vietnamese iced coffee</option><option>High caffeine</option><option>Low acidity</option><option>Specialty tasting</option></select></label>
+            </div>
+            <button className="primaryBtn full" onClick={() => setSubmitted(true)}><Send size={18} /> Generate Recommendation</button>
+          </div>
+          <div className="card resultCard">
+            <h3>Best Match</h3>
+            {submitted ? <>
+              <div className="matchCircle">{top.match}%</div>
+              <h2>{top.name}</h2>
+              <p className="muted">{top.origin} • {top.roast}</p>
+              <p>{top.description}</p>
+              <div className="chips">{top.notes.map(note => <span key={note}>{note}</span>)}</div>
+            </> : <p className="placeholder">Complete the quiz and generate a recommendation.</p>}
+          </div>
+        </div>
+      </section>
+
+      <section className="section waitlist" id="waitlist">
+        <div>
+          <div className="eyebrow"><Mail size={16} /> Coming soon</div>
+          <h2>Join the Lotus Gate waitlist.</h2>
+          <p>We are preparing the next version of the platform, coffee sourcing, and early tasting opportunities.</p>
+        </div>
+        <form className="waitlistForm" onSubmit={(e) => { e.preventDefault(); alert("Thank you for joining the Lotus Gate waitlist!"); }}>
+          <input type="email" placeholder="Your email address" required />
+          <button className="primaryBtn" type="submit">Join Waitlist</button>
+        </form>
+      </section>
+
+      <footer>
+        <img src="/lotus-gate-logo.png" alt="Lotus Gate logo" />
+        <p><strong>Lotus Gate LLC</strong></p>
+        <p>Premium Vietnamese Coffee + AI Personalization</p>
+        <p><a href="mailto:info@lotusgate.ai">info@lotusgate.ai</a></p>
+      </footer>
     </main>
   );
 }
