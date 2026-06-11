@@ -67,21 +67,27 @@ footer a { color: #8b5a36; font-weight: 900; }
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .social-button {
-  background: #8b5a2b;
-  color: white;
-  padding: 12px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 12px 20px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.3s;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5a2b, #c49b63);
+  box-shadow: 0 4px 12px rgba(139, 90, 43, 0.2);
+  transition: all 0.25s ease;
 }
 
 .social-button:hover {
-  background: #6f451f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 90, 43, 0.3);
 }
