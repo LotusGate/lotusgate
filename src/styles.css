@@ -85,14 +85,3 @@ footer a { color: #8b5a36; font-weight: 900; }
 .social-button:hover {
   background: #6f451f;
 }
-
-.qr-section {
-  margin-top: 30px;
-}
-
-.instagram-qr {
-  width: 220px;
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
