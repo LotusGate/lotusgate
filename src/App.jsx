@@ -13,7 +13,7 @@ import {
 import "./styles.css";
 
 const socials = {
-  instagram: "https://www.instagram.com/lotusgate.ai",
+  instagram: "https://www.instagram.com/lotusgatecoffee",
   tiktok: "https://www.tiktok.com/@lotusgatecoffee",
   linkedin: "https://www.linkedin.com/in/lotus-gate-b6ab77415/?skipRedirect=true",
   facebook: "https://www.facebook.com/profile.php?id=61590673413083",
@@ -122,14 +122,13 @@ function App() {
 
       <section className="section social" id="social">
         <div className="social-links">
-  <a
-    href={socials.instagram}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="social-button"
-  >
-    Instagram
-  </a>
+  <a href={socials.instagram} target="_blank" rel="noopener noreferrer">
+  <img
+    src={socials.instagramQR}
+    alt="Instagram QR Code for Lotus Gate"
+    className="instagram-qr"
+  />
+</a>
 
   <a
     href={socials.tiktok}
