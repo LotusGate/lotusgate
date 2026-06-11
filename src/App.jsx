@@ -153,7 +153,7 @@ function App() {
         <p><strong>Lotus Gate LLC</strong></p>
         <p>Premium Vietnamese Coffee + AI Personalization</p>
         <p><a href="mailto:info@lotusgate.ai">info@lotusgate.ai</a></p>
-        <div className="footerLinks"><a href={socials.tiktok} target="_blank" rel="noreferrer">TikTok</a><a href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={socials.instagram} target="_blank" rel="noreferrer">Instagram</a></div>
+        <div className="footerLinks"><a href={socials.tiktok} target="_blank" rel="noreferrer">TikTok</a><a href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={socials.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={socials.facebook} target="_blank" rel="noreferrer">Facebook</a></div>
       </footer>
     </main>
   );
