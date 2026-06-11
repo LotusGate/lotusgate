@@ -119,46 +119,27 @@ function App() {
         </div>
       </section>
 
-      <section className="section social" id="social">
-        <div className="social-links">
-  <a
-    href={socials.instagram}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="social-button"
-  >
-    Instagram
-  </a>
+      <section className="social-section">
+  <h2>Follow Lotus Gate</h2>
 
-  <a
-    href={socials.tiktok}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="social-button"
-  >
-    TikTok
-  </a>
+  <div className="social-links">
+    <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="social-button">
+      Instagram
+    </a>
 
-  <a
-    href={socials.linkedin}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="social-button"
-  >
-    LinkedIn
-  </a>
+    <a href={socials.tiktok} target="_blank" rel="noopener noreferrer" className="social-button">
+      TikTok
+    </a>
 
-  <a
-    href={socials.facebook}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="social-button"
-  >
-    Facebook
-  </a>
-</div>
-      </section>
+    <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-button">
+      LinkedIn
+    </a>
 
+    <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="social-button">
+      Facebook
+    </a>
+  </div>
+</section>
       <section className="section waitlist" id="waitlist">
         <div><div className="eyebrow"><Mail size={16} /> Coming soon</div><h2>Join the Lotus Gate waitlist.</h2><p>We are preparing the next version of the platform, coffee sourcing, and early tasting opportunities.</p></div>
         <form className="waitlistForm" onSubmit={(e) => { e.preventDefault(); alert("Thank you for joining the Lotus Gate waitlist!"); }}>
