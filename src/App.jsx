@@ -1,14 +1,24 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Coffee, Instagram, Linkedin, Mail, MapPin, Send, Sparkles, Star, ShoppingBag, Music2 } from "lucide-react";
+import {
+  Coffee,
+  Mail,
+  MapPin,
+  Send,
+  Sparkles,
+  Star,
+  ShoppingBag
+} from "lucide-react";
+
 import "./styles.css";
 
 const socials = {
+  instagram: "https://www.instagram.com/lotusgate.ai",
   tiktok: "https://www.tiktok.com/@lotusgatecoffee",
   linkedin: "https://www.linkedin.com/in/lotus-gate-b6ab77415/?skipRedirect=true",
-  instagramQr: "/instagram-qr.png"
+  facebook: "https://www.facebook.com/profile.php?id=61590673413083",
+  instagramQR: "/instagram-qr.png"
 };
-
 const coffees = [
   { id: 1, name: "Da Lat Arabica Honey Process", origin: "Da Lat, Vietnam", roast: "Medium", notes: ["honey", "citrus", "floral"], sweetness: 5, bitterness: 2, acidity: 4, body: 3, caffeine: 3, description: "A bright, elegant Vietnamese Arabica for people who enjoy sweetness, aroma, and a clean finish." },
   { id: 2, name: "Central Highlands Robusta", origin: "Buon Ma Thuot, Vietnam", roast: "Dark", notes: ["dark chocolate", "bold", "nutty"], sweetness: 2, bitterness: 5, acidity: 1, body: 5, caffeine: 5, description: "A strong, high-caffeine profile inspired by traditional Vietnamese coffee culture." },
@@ -111,20 +121,43 @@ function App() {
       </section>
 
       <section className="section social" id="social">
-        <div className="socialText">
-          <div className="eyebrow"><Instagram size={16} /> Connect with us</div>
-          <h2>Follow the Lotus Gate journey.</h2>
-          <p>We are building Lotus Gate step by step—from Vietnamese coffee sourcing to AI-powered taste discovery. Follow us for updates, coffee stories, and early launch announcements.</p>
-          <div className="socialLinks">
-            <a className="socialBtn" href={socials.tiktok} target="_blank" rel="noreferrer"><Music2 size={18} /> TikTok @lotusgatecoffee</a>
-            <a className="socialBtn" href={socials.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} /> LinkedIn</a>
-          </div>
-        </div>
-        <div className="qrCard">
-          <img src={socials.instagramQr} alt="Instagram QR code for Lotus Gate" />
-          <strong>Instagram</strong>
-          <span>Scan to follow Lotus Gate</span>
-        </div>
+        <div className="social-links">
+  <a
+    href={socials.instagram}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="social-button"
+  >
+    Instagram
+  </a>
+
+  <a
+    href={socials.tiktok}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="social-button"
+  >
+    TikTok
+  </a>
+
+  <a
+    href={socials.linkedin}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="social-button"
+  >
+    LinkedIn
+  </a>
+
+  <a
+    href={socials.facebook}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="social-button"
+  >
+    Facebook
+  </a>
+</div>
       </section>
 
       <section className="section waitlist" id="waitlist">
