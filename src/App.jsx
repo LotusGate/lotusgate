@@ -1,42 +1,23 @@
 import React, { useMemo, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import {
-  Coffee, Mail, MapPin, Send, Sparkles, Star, ShoppingBag,
-  Menu, X as XIcon
-} from "lucide-react";
 import "./styles.css";
 
-/* ── Inline SVG brand icons (lucide-react v1 removed all brand icons) ── */
-const IgIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-  </svg>
-);
-const TikTokIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-  </svg>
-);
-const LinkedInIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-  </svg>
-);
-const FacebookIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-  </svg>
-);
-const XIcon2 = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M4 4l16 16M20 4L4 20"/>
-  </svg>
-);
-const PinterestIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.86-2.6 1.93-2.6.91 0 1.35.68 1.35 1.5 0 .91-.58 2.28-.88 3.55-.25 1.06.53 1.92 1.57 1.92 1.88 0 3.14-2.42 3.14-5.28 0-2.18-1.47-3.81-4.12-3.81-3 0-4.87 2.24-4.87 4.75 0 .86.25 1.47.64 1.94.18.21.2.3.14.54-.05.17-.15.59-.19.75-.06.24-.25.33-.46.24-1.32-.54-1.94-2-1.94-3.63 0-2.69 2.27-5.93 6.8-5.93 3.64 0 6.04 2.64 6.04 5.48 0 3.75-2.08 6.57-5.14 6.57-1.03 0-2-.55-2.33-1.18l-.65 2.49c-.23.88-.69 1.77-1.06 2.47.8.24 1.64.37 2.51.37 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-  </svg>
-);
+/* ── All icons as inline SVGs — zero external dependencies ── */
+const CoffeeIcon    = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>;
+const MailIcon      = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+const MapPinIcon    = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>;
+const SendIcon      = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>;
+const SparklesIcon  = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>;
+const StarIcon      = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+const BagIcon       = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
+const MenuIcon      = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>;
+const CloseIcon     = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+const IgIcon        = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>;
+const TikTokIcon    = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>;
+const LinkedInIcon  = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>;
+const FacebookIcon  = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>;
+const XIcon2        = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>;
+const PinterestIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.86-2.6 1.93-2.6.91 0 1.35.68 1.35 1.5 0 .91-.58 2.28-.88 3.55-.25 1.06.53 1.92 1.57 1.92 1.88 0 3.14-2.42 3.14-5.28 0-2.18-1.47-3.81-4.12-3.81-3 0-4.87 2.24-4.87 4.75 0 .86.25 1.47.64 1.94.18.21.2.3.14.54-.05.17-.15.59-.19.75-.06.24-.25.33-.46.24-1.32-.54-1.94-2-1.94-3.63 0-2.69 2.27-5.93 6.8-5.93 3.64 0 6.04 2.64 6.04 5.48 0 3.75-2.08 6.57-5.14 6.57-1.03 0-2-.55-2.33-1.18l-.65 2.49c-.23.88-.69 1.77-1.06 2.47.8.24 1.64.37 2.51.37 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>;
 
 /* ── Social links ─────────────────────────────────────────── */
 const socials = {
@@ -199,14 +180,14 @@ function App() {
           aria-label={navOpen ? "Close menu" : "Open menu"}
           onClick={() => setNavOpen(v => !v)}
         >
-          {navOpen ? <XIcon size={22} /> : <Menu size={22} />}
+          {navOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </header>
 
       {/* ── Hero ──────────────────────────────────────────── */}
       <section className="hero" id="top">
         <div className="heroText">
-          <div className="eyebrow"><Sparkles size={16} /> AI-powered coffee discovery</div>
+          <div className="eyebrow"><SparklesIcon /> AI-powered coffee discovery</div>
           <div className="heroBrandPill">Introducing <strong>VietCoff</strong></div>
           <h1>Premium Vietnamese coffee, curated for your taste.</h1>
           <p>Lotus Gate brings you <strong>VietCoff</strong> — authentic single-origin Vietnamese coffee from the highlands of Da Lat and Buon Ma Thuot, matched to your taste by AI.</p>
@@ -235,17 +216,17 @@ function App() {
       {/* ── Three info cards ──────────────────────────────── */}
       <section className="section threeCards">
         <article className="infoCard">
-          <Coffee aria-hidden="true" />
+          <CoffeeIcon aria-hidden="true" />
           <h3>Vietnamese Origin</h3>
           <p>Every VietCoff bag is sourced directly from farms and roasters in Dak Lak, Da Lat, and the Central Highlands.</p>
         </article>
         <article className="infoCard">
-          <Star aria-hidden="true" />
+          <StarIcon aria-hidden="true" />
           <h3>Premium Taste</h3>
           <p>VietCoff specialty profiles — Da Lat Arabica, bold Robusta blends, and traditional phin-style coffee.</p>
         </article>
         <article className="infoCard">
-          <ShoppingBag aria-hidden="true" />
+          <BagIcon aria-hidden="true" />
           <h3>Subscription Ready</h3>
           <p>A personalized VietCoff subscription built around your taste profile, arriving on your schedule.</p>
         </article>
@@ -254,7 +235,7 @@ function App() {
       {/* ── Story ─────────────────────────────────────────── */}
       <section className="section story" id="story">
         <div>
-          <div className="eyebrow"><MapPin size={16} /> Our beginning</div>
+          <div className="eyebrow"><MapPinIcon /> Our beginning</div>
           <h2>From a gift of Vietnamese coffee to a new idea.</h2>
           <p>Lotus Gate began with a simple memory: coffee shared by a friend in Vietnam. That first cup — bold, dark, slowly dripping through a phin filter into sweetened condensed milk — was unlike anything available in the US.</p>
           <p>That experience became the starting point for a broader vision: importing premium Vietnamese coffee directly from highland farms in Da Lat and Buon Ma Thuot under our own brand, <strong>VietCoff</strong>. Every bag carries the story of where it came from.</p>
@@ -278,7 +259,7 @@ function App() {
       {/* ── Quiz ──────────────────────────────────────────── */}
       <section className="section quizSection" id="quiz">
         <div className="quizIntro">
-          <div className="eyebrow"><Sparkles size={16} /> VietCoff taste engine</div>
+          <div className="eyebrow"><SparklesIcon /> VietCoff taste engine</div>
           <h2>Find your VietCoff match.</h2>
           <p>Adjust your taste preferences below and our AI engine will rank all VietCoff coffees by compatibility with your profile.</p>
         </div>
@@ -315,7 +296,7 @@ function App() {
               </label>
             </div>
             <button className="primaryBtn full" onClick={() => setSubmitted(true)}>
-              <Send size={18} aria-hidden="true" /> Generate My Matches
+              <SendIcon /> Generate My Matches
             </button>
           </div>
 
@@ -337,7 +318,7 @@ function App() {
                   className="primaryBtn full subscribeBtn"
                   onClick={() => handleSubscribe(top.name)}
                 >
-                  <Mail size={16} aria-hidden="true" /> Subscribe for this VietCoff
+                  <MailIcon /> Subscribe for this VietCoff
                 </button>
               </>
             ) : (
@@ -379,7 +360,7 @@ function App() {
       {/* ── Social ────────────────────────────────────────── */}
       <section className="section socialSection" id="social">
         <div>
-          <div className="eyebrow"><Sparkles size={16} /> Follow along</div>
+          <div className="eyebrow"><SparklesIcon /> Follow along</div>
           <h2>Join the Lotus Gate community.</h2>
           <p>Follow our journey from Vietnam sourcing trips to your morning cup. Behind-the-scenes farm visits, brewing guides, and early access for followers.</p>
           <SocialRow className="hereSocialRow" />
@@ -403,7 +384,7 @@ function App() {
       {/* ── Waitlist ──────────────────────────────────────── */}
       <section className="section waitlist" id="waitlist" ref={waitlistRef}>
         <div>
-          <div className="eyebrow"><Mail size={16} /> Coming soon</div>
+          <div className="eyebrow"><MailIcon /> Coming soon</div>
           <h2>Join the VietCoff waitlist.</h2>
           <p>Be first to access our curated VietCoff blends, early tasting kits, and personalized subscription launch — brought to you by Lotus Gate.</p>
           {waitlistCoffee && (
