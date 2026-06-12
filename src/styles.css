@@ -64,30 +64,28 @@ footer a { color: #8b5a36; font-weight: 900; }
   margin-top: 60px;
 }
 
-.social-links {
+.social-icon-links {
   display: flex;
+  gap: 12px;
   justify-content: center;
-  gap: 14px;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
-.social-button {
+.social-icon-links a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #4c2d1e;
+  color: white;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
-  padding: 12px 20px;
-  border-radius: 999px;
+  font-weight: 800;
   text-decoration: none;
-  font-weight: 600;
-  color: #ffffff;
-  background: linear-gradient(135deg, #8b5a2b, #c49b63);
-  box-shadow: 0 4px 12px rgba(139, 90, 43, 0.2);
-  transition: all 0.25s ease;
+  font-size: 16px;
 }
 
-.social-button:hover {
+.social-icon-links a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(139, 90, 43, 0.3);
 }
