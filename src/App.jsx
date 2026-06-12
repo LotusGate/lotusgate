@@ -125,12 +125,12 @@ function App() {
   <h2>Follow Lotus Gate</h2>
 
   <div className="social-links">
-  <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="social-button">Instagram</a>
-  <a href={socials.tiktok} target="_blank" rel="noopener noreferrer" className="social-button">TikTok</a>
-  <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-button">LinkedIn</a>
-  <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="social-button">Facebook</a>
-  <a href={socials.x} target="_blank" rel="noopener noreferrer" className="social-button">X</a>
-  <a href={socials.pinterest} target="_blank" rel="noopener noreferrer" className="social-button">Pinterest</a>
+  <a href={socials.instagram} className="social-button">Instagram</a>
+  <a href={socials.tiktok} className="social-button">TikTok</a>
+  <a href={socials.linkedin} className="social-button">LinkedIn</a>
+  <a href={socials.facebook} className="social-button">Facebook</a>
+  <a href={socials.x} className="social-button">X</a>
+  <a href={socials.pinterest} className="social-button">Pinterest</a>
 </div>
 </section>
       <section className="section waitlist" id="waitlist">
