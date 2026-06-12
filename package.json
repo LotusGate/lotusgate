@@ -9,7 +9,6 @@
     "vite": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "lucide-react": "0.383.0",
     "framer-motion": "latest"
   },
   "devDependencies": {}
