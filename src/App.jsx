@@ -2,9 +2,41 @@ import React, { useMemo, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import {
   Coffee, Mail, MapPin, Send, Sparkles, Star, ShoppingBag,
-  Instagram, Linkedin, Facebook, Twitter, Menu, X as XIcon
+  Menu, X as XIcon
 } from "lucide-react";
 import "./styles.css";
+
+/* ── Inline SVG brand icons (lucide-react v1 removed all brand icons) ── */
+const IgIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+  </svg>
+);
+const TikTokIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+  </svg>
+);
+const LinkedInIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+  </svg>
+);
+const FacebookIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  </svg>
+);
+const XIcon2 = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4 4l16 16M20 4L4 20"/>
+  </svg>
+);
+const PinterestIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.86-2.6 1.93-2.6.91 0 1.35.68 1.35 1.5 0 .91-.58 2.28-.88 3.55-.25 1.06.53 1.92 1.57 1.92 1.88 0 3.14-2.42 3.14-5.28 0-2.18-1.47-3.81-4.12-3.81-3 0-4.87 2.24-4.87 4.75 0 .86.25 1.47.64 1.94.18.21.2.3.14.54-.05.17-.15.59-.19.75-.06.24-.25.33-.46.24-1.32-.54-1.94-2-1.94-3.63 0-2.69 2.27-5.93 6.8-5.93 3.64 0 6.04 2.64 6.04 5.48 0 3.75-2.08 6.57-5.14 6.57-1.03 0-2-.55-2.33-1.18l-.65 2.49c-.23.88-.69 1.77-1.06 2.47.8.24 1.64.37 2.51.37 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+  </svg>
+);
 
 /* ── Social links ─────────────────────────────────────────── */
 const socials = {
@@ -100,19 +132,19 @@ function Slider({ label, value, onChange, left, right }) {
 /* ── Social icons row ─────────────────────────────────────── */
 function SocialRow({ className = "" }) {
   const items = [
-    { href: socials.instagram, label: "Instagram",  Icon: Instagram },
-    { href: socials.tiktok,    label: "TikTok",     Icon: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg> },
-    { href: socials.linkedin,  label: "LinkedIn",   Icon: Linkedin },
-    { href: socials.facebook,  label: "Facebook",   Icon: Facebook },
-    { href: socials.x,         label: "X / Twitter",Icon: Twitter },
-    { href: socials.pinterest, label: "Pinterest",  Icon: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 20l4-9"/><path d="M10.7 13.3a4 4 0 1 0 .6-5.6"/></svg> },
+    { href: socials.instagram, label: "Instagram",   Icon: IgIcon },
+    { href: socials.tiktok,    label: "TikTok",      Icon: TikTokIcon },
+    { href: socials.linkedin,  label: "LinkedIn",    Icon: LinkedInIcon },
+    { href: socials.facebook,  label: "Facebook",    Icon: FacebookIcon },
+    { href: socials.x,         label: "X / Twitter", Icon: XIcon2 },
+    { href: socials.pinterest, label: "Pinterest",   Icon: PinterestIcon },
   ];
   return (
     <div className={`socialRow ${className}`}>
       {items.map(({ href, label, Icon }) => (
         <a key={label} href={href} target="_blank" rel="noopener noreferrer"
            className="socialIcon" aria-label={label}>
-          <Icon size={18} />
+          <Icon />
         </a>
       ))}
     </div>
