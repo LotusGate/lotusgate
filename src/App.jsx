@@ -197,19 +197,69 @@ function App() {
           </div>
         </div>
         <div className="heroImage">
-          <img
-            src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80"
-            alt="Vietnamese phin coffee dripping into a glass, highlands in background"
-            className="heroCoffeeImg"
-            onError={(e) => {
-              e.target.style.display = "none";
-              e.target.parentElement.classList.add("logoFallback");
-              const img = document.createElement("img");
-              img.src = "/lotus-gate-logo.png";
-              img.alt = "Lotus Gate logo";
-              e.target.parentElement.appendChild(img);
-            }}
-          />
+          <div className="bagWrapper" aria-label="VietCoff coffee bag mockup">
+            <svg width="100%" viewBox="0 0 680 860" role="img" xmlns="http://www.w3.org/2000/svg">
+              <title>VietCoff coffee bag with Lotus Gate logo</title>
+              <defs>
+                <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#d8cfc4"/><stop offset="100%" stopColor="#b8ae9e"/></linearGradient>
+                <linearGradient id="kFront" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#e4d8c2"/><stop offset="50%" stopColor="#eedfc8"/><stop offset="100%" stopColor="#dccfb8"/></linearGradient>
+                <linearGradient id="kSide" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#4a3a2a"/><stop offset="100%" stopColor="#362818"/></linearGradient>
+                <linearGradient id="kTopF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#f2e8d4"/><stop offset="100%" stopColor="#d8c8a8"/></linearGradient>
+                <linearGradient id="kTopS" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#564030"/><stop offset="100%" stopColor="#3a2c1e"/></linearGradient>
+                <linearGradient id="kGusF" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#cec0a8"/><stop offset="100%" stopColor="#b8a888"/></linearGradient>
+                <linearGradient id="kGusS" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#382c1c"/><stop offset="100%" stopColor="#281e10"/></linearGradient>
+                <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f8e090"/><stop offset="40%" stopColor="#d4980c"/><stop offset="100%" stopColor="#e8b820"/></linearGradient>
+                <linearGradient id="goldS" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#c07808"/><stop offset="50%" stopColor="#f0d060"/><stop offset="100%" stopColor="#c89010"/></linearGradient>
+                <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#1B5E3B"/><stop offset="50%" stopColor="#236b45"/><stop offset="100%" stopColor="#1B5E3B"/></linearGradient>
+                <linearGradient id="lotusGlow" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stopColor="#fffae8" stopOpacity="0.9"/><stop offset="100%" stopColor="#fff0e0" stopOpacity="0"/></linearGradient>
+                <filter id="drop"><feDropShadow dx="14" dy="18" stdDeviation="15" floodColor="#000" floodOpacity="0.32"/></filter>
+                <filter id="blur5"><feGaussianBlur stdDeviation="5"/></filter>
+              </defs>
+              <rect width="680" height="860" fill="url(#bg)"/>
+              <ellipse cx="355" cy="818" rx="248" ry="24" fill="#000" opacity="0.15" filter="url(#blur5)"/>
+              <polygon points="148,740 492,740 492,792 148,792" fill="url(#kGusF)"/>
+              <polygon points="492,740 580,718 580,772 492,792" fill="url(#kGusS)"/>
+              <line x1="148" y1="766" x2="492" y2="766" stroke="#b8a888" strokeWidth="0.8" opacity="0.45"/>
+              <polygon points="148,108 492,108 492,740 148,740" fill="url(#kFront)" filter="url(#drop)"/>
+              <polygon points="492,108 580,86 580,718 492,740" fill="url(#kSide)"/>
+              <polygon points="148,108 182,108 182,740 148,740" fill="#f8f0dc" opacity="0.16"/>
+              <polygon points="148,56 492,56 492,108 148,108" fill="url(#kTopF)"/>
+              <polygon points="492,56 580,36 580,86 492,108" fill="url(#kTopS)"/>
+              <line x1="150" y1="74" x2="490" y2="74" stroke="#c8b888" strokeWidth="0.9" opacity="0.45"/>
+              <rect x="164" y="63" width="314" height="9" rx="4.5" fill="#d0c4a0" opacity="0.5"/>
+              <circle cx="178" cy="67" r="5.5" fill="none" stroke="#b0a078" strokeWidth="1.4" opacity="0.55"/>
+              <circle cx="435" cy="154" r="19" fill="#d4c8a8" stroke="#b4a480" strokeWidth="1.4"/>
+              <circle cx="435" cy="154" r="13" fill="none" stroke="#c0b090" strokeWidth="0.9"/>
+              <circle cx="435" cy="154" r="6" fill="#bca878" stroke="#a89060" strokeWidth="0.7"/>
+              <circle cx="435" cy="154" r="2.5" fill="#a08050"/>
+              <rect x="166" y="188" width="310" height="468" rx="5" fill="#faf6ee" stroke="#ceb888" strokeWidth="1.2" opacity="0.96"/>
+              <rect x="172" y="194" width="298" height="456" rx="3.5" fill="none" stroke="url(#gold)" strokeWidth="0.7" opacity="0.4"/>
+              <rect x="166" y="188" width="310" height="32" rx="5" fill="url(#green)"/>
+              <rect x="166" y="206" width="310" height="14" fill="url(#green)"/>
+              <text x="321" y="209" textAnchor="middle" fontFamily="Georgia,serif" fontSize="9.5" fill="#f0d070" letterSpacing="3.5">PREMIUM VIETNAMESE COFFEE</text>
+              <ellipse cx="321" cy="315" rx="46" ry="52" fill="url(#lotusGlow)" filter="url(#blur5)" opacity="0.8"/>
+              <image href="/lotus-gate-logo.png" x="205" y="210" width="232" height="232" preserveAspectRatio="xMidYMid meet"/>
+              <text x="321" y="432" textAnchor="middle" fontFamily="Georgia,serif" fontSize="60" fontWeight="700" fill="#1B5E3B" letterSpacing="1">VietCoff</text>
+              <rect x="186" y="442" width="270" height="2.5" rx="1.2" fill="url(#gold)" opacity="0.8"/>
+              <rect x="174" y="454" width="294" height="37" rx="3" fill="url(#green)"/>
+              <text x="321" y="478" textAnchor="middle" fontFamily="Georgia,serif" fontSize="13" fontWeight="700" fill="#f0d070" letterSpacing="3">DA LAT ARABICA</text>
+              <text x="321" y="510" textAnchor="middle" fontFamily="Georgia,serif" fontSize="10" fill="#3a7050" letterSpacing="2">HONEY PROCESS  ·  MEDIUM ROAST</text>
+              <circle cx="262" cy="525" r="2" fill="url(#gold)" opacity="0.6"/>
+              <circle cx="321" cy="525" r="2" fill="url(#gold)" opacity="0.6"/>
+              <circle cx="380" cy="525" r="2" fill="url(#gold)" opacity="0.6"/>
+              <text x="321" y="543" textAnchor="middle" fontFamily="Georgia,serif" fontSize="9" fill="#1B5E3B" letterSpacing="3" opacity="0.65">TASTING NOTES</text>
+              <text x="321" y="561" textAnchor="middle" fontFamily="Georgia,serif" fontSize="11" fill="#2d5a3d" letterSpacing="1">Honey  ·  Citrus  ·  Floral</text>
+              <line x1="182" y1="574" x2="460" y2="574" stroke="url(#gold)" strokeWidth="0.6" opacity="0.35"/>
+              <text x="321" y="592" textAnchor="middle" fontFamily="Georgia,serif" fontSize="9.5" fill="#2d5a3d" letterSpacing="0.8" opacity="0.8">Single Origin — Lâm Đồng, Vietnam · 1,500m</text>
+              <line x1="182" y1="605" x2="460" y2="605" stroke="url(#gold)" strokeWidth="0.6" opacity="0.35"/>
+              <text x="321" y="626" textAnchor="middle" fontFamily="Georgia,serif" fontSize="12" fill="#1B5E3B" letterSpacing="2">NET WT  250g  /  8.8 oz</text>
+              <rect x="166" y="642" width="310" height="14" fill="url(#green)" opacity="0.15"/>
+              <text x="321" y="652" textAnchor="middle" fontFamily="Georgia,serif" fontSize="8.5" fill="#3a6048" letterSpacing="1.5" opacity="0.72">LOTUS GATE LLC  ·  MICHIGAN, USA  ·  lotusgate.ai</text>
+              <polygon points="140,792 500,792 518,814 122,814" fill="#b09040"/>
+              <line x1="156" y1="802" x2="502" y2="802" stroke="#9a7828" strokeWidth="0.7" opacity="0.3"/>
+              <text x="536" y="500" textAnchor="middle" fontFamily="Georgia,serif" fontSize="8" fill="#7a6040" letterSpacing="2" opacity="0.38" transform="rotate(90 536 450)">VIETCOFF  ·  PREMIUM VIETNAMESE COFFEE</text>
+            </svg>
+          </div>
         </div>
       </section>
 
