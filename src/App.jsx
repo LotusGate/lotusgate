@@ -16,7 +16,9 @@ const socials = {
   instagram: "https://www.instagram.com/lotusgate.ai/",
   tiktok: "https://www.tiktok.com/@lotusgatecoffee",
   linkedin: "https://www.linkedin.com/in/lotus-gate-b6ab77415/?skipRedirect=true",
-  facebook: "https://www.facebook.com/profile.php?id=61590673413083"
+  facebook: "https://www.facebook.com/profile.php?id=61590673413083",
+  x: "https://x.com/vietcoff",
+  pinterest: "https://www.pinterest.com/vietcoff/"
 };
 const coffees = [
   { id: 1, name: "Da Lat Arabica Honey Process", origin: "Da Lat, Vietnam", roast: "Medium", notes: ["honey", "citrus", "floral"], sweetness: 5, bitterness: 2, acidity: 4, body: 3, caffeine: 3, description: "A bright, elegant Vietnamese Arabica for people who enjoy sweetness, aroma, and a clean finish." },
@@ -123,22 +125,13 @@ function App() {
   <h2>Follow Lotus Gate</h2>
 
   <div className="social-links">
-    <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="social-button">
-      Instagram
-    </a>
-
-    <a href={socials.tiktok} target="_blank" rel="noopener noreferrer" className="social-button">
-      TikTok
-    </a>
-
-    <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-button">
-      LinkedIn
-    </a>
-
-    <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="social-button">
-      Facebook
-    </a>
-  </div>
+  <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="social-button">Instagram</a>
+  <a href={socials.tiktok} target="_blank" rel="noopener noreferrer" className="social-button">TikTok</a>
+  <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-button">LinkedIn</a>
+  <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="social-button">Facebook</a>
+  <a href={socials.x} target="_blank" rel="noopener noreferrer" className="social-button">X</a>
+  <a href={socials.pinterest} target="_blank" rel="noopener noreferrer" className="social-button">Pinterest</a>
+</div>
 </section>
       <section className="section waitlist" id="waitlist">
         <div><div className="eyebrow"><Mail size={16} /> Coming soon</div><h2>Join the Lotus Gate waitlist.</h2><p>We are preparing the next version of the platform, coffee sourcing, and early tasting opportunities.</p></div>
@@ -153,7 +146,14 @@ function App() {
         <p><strong>Lotus Gate LLC</strong></p>
         <p>Premium Vietnamese Coffee + AI Personalization</p>
         <p><a href="mailto:info@lotusgate.ai">info@lotusgate.ai</a></p>
-        <div className="footerLinks"><a href={socials.tiktok} target="_blank" rel="noreferrer">TikTok</a><a href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={socials.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={socials.facebook} target="_blank" rel="noreferrer">Facebook</a></div>
+        <div className="social-icon-links">
+  <a href={socials.instagram} target="_blank" rel="noopener noreferrer">IG</a>
+  <a href={socials.tiktok} target="_blank" rel="noopener noreferrer">♪</a>
+  <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">in</a>
+  <a href={socials.facebook} target="_blank" rel="noopener noreferrer">f</a>
+  <a href={socials.x} target="_blank" rel="noopener noreferrer">𝕏</a>
+  <a href={socials.pinterest} target="_blank" rel="noopener noreferrer">P</a>
+</div>
       </footer>
     </main>
   );
