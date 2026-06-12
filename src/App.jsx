@@ -49,9 +49,11 @@ const socials = {
 };
 
 /* ── Coffee database ──────────────────────────────────────── */
+const BRAND = "VietCoff";
 const coffees = [
   {
     id: 1,
+    brand: BRAND,
     name: "Da Lat Arabica Honey Process",
     origin: "Da Lat, Vietnam",
     roast: "Medium",
@@ -63,6 +65,7 @@ const coffees = [
   },
   {
     id: 2,
+    brand: BRAND,
     name: "Central Highlands Robusta",
     origin: "Buon Ma Thuot, Vietnam",
     roast: "Dark",
@@ -74,6 +77,7 @@ const coffees = [
   },
   {
     id: 3,
+    brand: BRAND,
     name: "Saigon Phin Blend",
     origin: "Vietnam Blend",
     roast: "Medium-Dark",
@@ -85,6 +89,7 @@ const coffees = [
   },
   {
     id: 4,
+    brand: BRAND,
     name: "Hanoi Morning Blend",
     origin: "Vietnam",
     roast: "Medium",
@@ -202,8 +207,9 @@ function App() {
       <section className="hero" id="top">
         <div className="heroText">
           <div className="eyebrow"><Sparkles size={16} /> AI-powered coffee discovery</div>
+          <div className="heroBrandPill">Introducing <strong>VietCoff</strong></div>
           <h1>Premium Vietnamese coffee, curated for your taste.</h1>
-          <p>Lotus Gate connects authentic Vietnamese coffee culture with an intelligent taste profile experience — helping you discover the roast, origin, and flavor that fits you best.</p>
+          <p>Lotus Gate brings you <strong>VietCoff</strong> — authentic single-origin Vietnamese coffee from the highlands of Da Lat and Buon Ma Thuot, matched to your taste by AI.</p>
           <div className="heroActions">
             <a className="primaryBtn" href="#quiz">Find Your Coffee</a>
             <a className="secondaryBtn" href="#story">Our Story</a>
@@ -231,17 +237,17 @@ function App() {
         <article className="infoCard">
           <Coffee aria-hidden="true" />
           <h3>Vietnamese Origin</h3>
-          <p>Sourced directly from farms and roasters in Dak Lak, Da Lat, and the Central Highlands of Vietnam.</p>
+          <p>Every VietCoff bag is sourced directly from farms and roasters in Dak Lak, Da Lat, and the Central Highlands.</p>
         </article>
         <article className="infoCard">
           <Star aria-hidden="true" />
           <h3>Premium Taste</h3>
-          <p>Specialty profiles — Da Lat Arabica, bold Robusta blends, and traditional phin-style coffee.</p>
+          <p>VietCoff specialty profiles — Da Lat Arabica, bold Robusta blends, and traditional phin-style coffee.</p>
         </article>
         <article className="infoCard">
           <ShoppingBag aria-hidden="true" />
           <h3>Subscription Ready</h3>
-          <p>A personalized coffee subscription built around your taste profile, arriving on your schedule.</p>
+          <p>A personalized VietCoff subscription built around your taste profile, arriving on your schedule.</p>
         </article>
       </section>
 
@@ -251,7 +257,7 @@ function App() {
           <div className="eyebrow"><MapPin size={16} /> Our beginning</div>
           <h2>From a gift of Vietnamese coffee to a new idea.</h2>
           <p>Lotus Gate began with a simple memory: coffee shared by a friend in Vietnam. That first cup — bold, dark, slowly dripping through a phin filter into sweetened condensed milk — was unlike anything available in the US.</p>
-          <p>That experience became the starting point for a broader vision: importing premium Vietnamese coffee directly from highland farms in Da Lat and Buon Ma Thuot, and using AI to help every customer discover the coffee that best matches their own preferences.</p>
+          <p>That experience became the starting point for a broader vision: importing premium Vietnamese coffee directly from highland farms in Da Lat and Buon Ma Thuot under our own brand, <strong>VietCoff</strong>. Every bag carries the story of where it came from.</p>
           <p>We are heading to Vietnam this summer to source directly — building relationships with farmers, tasting single-origin lots, and laying the foundation for the first AI-personalized Vietnamese coffee brand in America.</p>
         </div>
         <div className="storyVisual">
@@ -272,9 +278,9 @@ function App() {
       {/* ── Quiz ──────────────────────────────────────────── */}
       <section className="section quizSection" id="quiz">
         <div className="quizIntro">
-          <div className="eyebrow"><Sparkles size={16} /> Taste profile engine</div>
-          <h2>Find your Vietnamese coffee match.</h2>
-          <p>Adjust your taste preferences below and our AI engine will rank all coffees by compatibility with your profile.</p>
+          <div className="eyebrow"><Sparkles size={16} /> VietCoff taste engine</div>
+          <h2>Find your VietCoff match.</h2>
+          <p>Adjust your taste preferences below and our AI engine will rank all VietCoff coffees by compatibility with your profile.</p>
         </div>
 
         <div className="grid">
@@ -319,6 +325,7 @@ function App() {
             {submitted ? (
               <>
                 <div className="matchCircle" aria-label={`${top.match}% match`}>{top.match}%</div>
+                <p className="brandLabel">{top.brand}</p>
                 <h2>{top.name}</h2>
                 <p className="muted">{top.origin} · {top.roast} · {top.altitude}</p>
                 <p>{top.description}</p>
@@ -330,7 +337,7 @@ function App() {
                   className="primaryBtn full subscribeBtn"
                   onClick={() => handleSubscribe(top.name)}
                 >
-                  <Mail size={16} aria-hidden="true" /> Subscribe for this coffee
+                  <Mail size={16} aria-hidden="true" /> Subscribe for this VietCoff
                 </button>
               </>
             ) : (
@@ -342,7 +349,7 @@ function App() {
         {/* All ranked results */}
         {submitted && (
           <div className="rankedResults">
-            <h3>All coffees ranked for you</h3>
+            <h3>All VietCoff blends ranked for you</h3>
             <div className="rankedGrid">
               {ranked.map((coffee, i) => (
                 <div key={coffee.id} className={`rankedCard ${i === 0 ? "topMatch" : ""}`}>
@@ -350,6 +357,7 @@ function App() {
                     <span className="rankBadge">#{i + 1}</span>
                     <span className="matchScore">{coffee.match}% match</span>
                   </div>
+                  <p className="brandLabel">{coffee.brand}</p>
                   <h4>{coffee.name}</h4>
                   <p className="muted">{coffee.origin} · {coffee.roast}</p>
                   <div className="chips small">
@@ -396,11 +404,11 @@ function App() {
       <section className="section waitlist" id="waitlist" ref={waitlistRef}>
         <div>
           <div className="eyebrow"><Mail size={16} /> Coming soon</div>
-          <h2>Join the Lotus Gate waitlist.</h2>
-          <p>Be first to access our curated Vietnamese coffees, early tasting kits, and personalized subscription launch.</p>
+          <h2>Join the VietCoff waitlist.</h2>
+          <p>Be first to access our curated VietCoff blends, early tasting kits, and personalized subscription launch — brought to you by Lotus Gate.</p>
           {waitlistCoffee && (
             <p className="waitlistHint">
-              ☕ You selected: <strong>{waitlistCoffee}</strong> — we'll notify you when it's available.
+              ☕ You selected: <strong>VietCoff — {waitlistCoffee}</strong> — we'll notify you when it's available.
             </p>
           )}
         </div>
@@ -411,7 +419,7 @@ function App() {
           onSubmit={(e) => {
             /* Remove this block once Formspree is connected */
             e.preventDefault();
-            alert(`Welcome to the Lotus Gate waitlist${waitlistCoffee ? ` — we'll let you know about ${waitlistCoffee}` : ""}! We'll be in touch soon.`);
+            alert(`Welcome to the VietCoff waitlist${waitlistCoffee ? ` — we'll let you know when ${waitlistCoffee} is ready` : ""}! We'll be in touch soon.`);
           }}
         >
           <input type="hidden" name="coffee_match" value={waitlistCoffee} />
@@ -424,7 +432,7 @@ function App() {
       <footer>
         <img src="/lotus-gate-logo.png" alt="Lotus Gate logo" width="88" height="88" />
         <p><strong>Lotus Gate LLC</strong></p>
-        <p>Premium Vietnamese Coffee · AI Personalization</p>
+        <p><span className="footerBrand">VietCoff</span> · Premium Vietnamese Coffee · AI Personalization</p>
         <p><a href="mailto:info@lotusgate.ai">info@lotusgate.ai</a></p>
         <SocialRow className="footerSocialRow" />
         <p className="copyright">© {new Date().getFullYear()} Lotus Gate LLC · Michigan, USA</p>

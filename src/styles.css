@@ -305,7 +305,38 @@ footer a { color: #8b5a36; font-weight: 900; }
 footer a:hover { color: #b77831; }
 .copyright { font-size: .8rem; color: #9a7a66; margin-top: 12px; }
 
-/* ── Responsive ─────────────────────────────────────────────── */
+/* ── VietCoff brand label ────────────────────────────────────── */
+.brandLabel {
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: #b77831;
+  margin: 0 0 4px;
+}
+.rankedCard .brandLabel { font-size: .68rem; }
+
+/* Hero brand pill */
+.heroBrandPill {
+  display: inline-block;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  letter-spacing: .04em;
+}
+.heroBrandPill strong { color: #f2d39b; font-weight: 900; }
+
+/* Footer VietCoff brand highlight */
+.footerBrand {
+  font-weight: 900;
+  color: #b77831;
+  font-size: 1rem;
+}
 @media (max-width: 900px) {
   .hero, .grid, .threeCards, .story, .waitlist, .socialSection {
     grid-template-columns: 1fr;
