@@ -78,11 +78,11 @@ p  { line-height: 1.7; color: #4a3628; margin: 0 0 10px; }
   border-radius: 32px; overflow: hidden;
   border: 1px solid rgba(119,78,38,.12);
   box-shadow: 0 20px 56px rgba(75,45,25,.14);
-  aspect-ratio: 4/5;
-  background: #e8e0d4;
+  aspect-ratio: 3/2;
+  background: #efe6d8;
   display: flex; align-items: center; justify-content: center;
 }
-.heroCoffeeImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.heroCoffeeImg { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 /* ── Buttons ────────────────────────────────────────────────── */
 .primaryBtn, .secondaryBtn, .outlineBtn {
@@ -372,7 +372,7 @@ footer a:hover { color: #b77831; }
   .hero, .grid, .threeCards, .story, .waitlist, .socialSection {
     grid-template-columns: 1fr;
   }
-  .heroImage { aspect-ratio: 16/9; }
+  .heroImage { aspect-ratio: 3/2; }
   .rankedGrid { grid-template-columns: repeat(2, 1fr); }
   .shopGrid { grid-template-columns: repeat(2, 1fr); }
   .storyStats { grid-template-columns: repeat(3, 1fr); }
