@@ -36,9 +36,12 @@ const coffees = [
     id: 1,
     brand: BRAND,
     name: "Da Lat Arabica Honey Process",
-    origin: "Da Lat, Vietnam",
+    shortName: "Da Lat Arabica",
+    origin: "Lâm Đồng, Vietnam",
+    process: "Honey Process",
     roast: "Medium",
     altitude: "1,500m",
+    color: "#1B5E3B",
     notes: ["honey", "citrus", "floral"],
     sweetness: 5, bitterness: 2, acidity: 4, body: 3, caffeine: 3,
     description: "A bright, elegant Vietnamese Arabica for people who enjoy sweetness, aroma, and a clean finish.",
@@ -48,10 +51,13 @@ const coffees = [
     id: 2,
     brand: BRAND,
     name: "Central Highlands Robusta",
-    origin: "Buon Ma Thuot, Vietnam",
+    shortName: "Central Highlands Robusta",
+    origin: "Đắk Lắk, Vietnam",
+    process: "Natural Process",
     roast: "Dark",
-    altitude: "800m",
-    notes: ["dark chocolate", "bold", "nutty"],
+    altitude: "700–900m",
+    color: "#6B4226",
+    notes: ["chocolate", "caramel", "bold"],
     sweetness: 2, bitterness: 5, acidity: 1, body: 5, caffeine: 5,
     description: "A strong, high-caffeine profile inspired by traditional Vietnamese coffee culture.",
     price: "$16 / 250g",
@@ -60,10 +66,13 @@ const coffees = [
     id: 3,
     brand: BRAND,
     name: "Saigon Phin Blend",
-    origin: "Vietnam Blend",
+    shortName: "Saigon Phin Blend",
+    origin: "South Vietnam",
+    process: "Traditional Blend",
     roast: "Medium-Dark",
-    altitude: "900m",
-    notes: ["chocolate", "caramel", "roasted nuts"],
+    altitude: "Various Elevations",
+    color: "#7A2333",
+    notes: ["rich", "balanced", "smooth"],
     sweetness: 4, bitterness: 4, acidity: 2, body: 5, caffeine: 4,
     description: "A balanced blend designed for phin brewing, iced coffee, and a rich daily cup.",
     price: "$17 / 250g",
@@ -72,10 +81,13 @@ const coffees = [
     id: 4,
     brand: BRAND,
     name: "Hanoi Morning Blend",
-    origin: "Vietnam",
+    shortName: "Hanoi Morning Blend",
+    origin: "North Vietnam",
+    process: "Washed Process",
     roast: "Medium",
-    altitude: "1,200m",
-    notes: ["brown sugar", "almond", "smooth"],
+    altitude: "Various Elevations",
+    color: "#1F3A5F",
+    notes: ["clean", "nutty", "smooth"],
     sweetness: 4, bitterness: 3, acidity: 2, body: 4, caffeine: 3,
     description: "A smooth, approachable profile for customers who prefer a lower-acidity morning coffee.",
     price: "$17 / 250g",
@@ -170,6 +182,7 @@ function App() {
           <span>Lotus Gate</span>
         </a>
         <nav className={`navLinks ${navOpen ? "open" : ""}`} aria-label="Main navigation">
+          <a href="#shop"     onClick={() => setNavOpen(false)}>Shop</a>
           <a href="#story"    onClick={() => setNavOpen(false)}>Story</a>
           <a href="#quiz"     onClick={() => setNavOpen(false)}>Taste Quiz</a>
           <a href="#social"   onClick={() => setNavOpen(false)}>Social</a>
@@ -222,6 +235,48 @@ function App() {
           <h3>Subscription Ready</h3>
           <p>A personalized VietCoff subscription built around your taste profile, arriving on your schedule.</p>
         </article>
+      </section>
+
+      {/* ── Shop Our Coffees ──────────────────────────────── */}
+      <section className="section shopSection" id="shop">
+        <div className="shopLineup">
+          <img
+            src="/VietCoffLineup.png"
+            alt="The four VietCoff coffee bags side by side — Da Lat Arabica, Central Highlands Robusta, Saigon Phin Blend, and Hanoi Morning Blend"
+            className="shopLineupImg"
+          />
+        </div>
+        <div className="shopIntro">
+          <div className="eyebrow"><BagIcon /> Shop our coffees</div>
+          <h2>Four single-origin profiles. One journey.</h2>
+          <p>Every VietCoff blend is roasted for its story — from the bright, floral cup of Da Lat to the bold, traditional Robusta of the Central Highlands.</p>
+        </div>
+        <div className="shopGrid">
+          {coffees.map(coffee => (
+            <article className="shopCard" key={coffee.id}>
+              <div className="shopBand" style={{ background: coffee.color }}>
+                <span>{BRAND}</span>
+              </div>
+              <div className="shopBody">
+                <p className="brandLabel" style={{ color: coffee.color }}>{coffee.process} · {coffee.roast} Roast</p>
+                <h3>{coffee.shortName}</h3>
+                <p className="muted">{coffee.origin} · {coffee.altitude}</p>
+                <div className="chips small">
+                  {coffee.notes.map(n => <span key={n}>{n}</span>)}
+                </div>
+                <div className="shopFooter">
+                  <span className="priceTag">{coffee.price}</span>
+                  <button className="outlineBtn" onClick={() => handleSubscribe(coffee.name)}>
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="shopViewAll">
+          <a className="primaryBtn" href="#quiz">Find Your Match in the Quiz</a>
+        </div>
       </section>
 
       {/* ── Story ─────────────────────────────────────────── */}

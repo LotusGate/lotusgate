@@ -127,6 +127,46 @@ p  { line-height: 1.7; color: #4a3628; margin: 0 0 10px; }
 .infoCard p { color: #5a4030; font-size: .95rem; }
 
 /* ── Story section ──────────────────────────────────────────── */
+/* ── Shop Our Coffees section ─────────────────────────────────── */
+.shopLineup {
+  border-radius: 28px; overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 16px 44px rgba(75,45,25,.12);
+}
+.shopLineupImg { width: 100%; display: block; object-fit: cover; }
+.shopIntro { max-width: 680px; margin: 0 auto 28px; text-align: center; }
+.shopIntro h2 { margin: 10px 0 8px; }
+.shopGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+}
+.shopCard {
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(119,78,38,.13);
+  border-radius: 22px; overflow: hidden;
+  box-shadow: 0 12px 32px rgba(75,45,25,.08);
+  display: flex; flex-direction: column;
+  transition: transform .18s, box-shadow .18s;
+}
+.shopCard:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(75,45,25,.14); }
+.shopBand {
+  padding: 10px 18px;
+  text-align: center;
+}
+.shopBand span {
+  color: #fdf6e8; font-weight: 900; letter-spacing: .06em;
+  font-size: .82rem; text-transform: uppercase;
+}
+.shopBody { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.shopBody h3 { margin: 0 0 2px; font-size: 1.18rem; }
+.shopBody .chips.small { justify-content: flex-start; margin-top: 10px; }
+.shopFooter {
+  margin-top: auto; padding-top: 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.shopFooter .priceTag { margin: 0; }
+.shopViewAll { text-align: center; margin-top: 28px; }
+
+/* ── Story section ──────────────────────────────────────────── */
 .story {
   background: rgba(255,255,255,.88);
   border: 1px solid rgba(119,78,38,.13);
@@ -340,6 +380,7 @@ footer a:hover { color: #b77831; }
   }
   .heroImage { aspect-ratio: 16/9; }
   .rankedGrid { grid-template-columns: repeat(2, 1fr); }
+  .shopGrid { grid-template-columns: repeat(2, 1fr); }
   .storyStats { grid-template-columns: repeat(3, 1fr); }
   .socialPlatforms { grid-template-columns: repeat(2, 1fr); }
   .waitlist { padding: 32px 24px; }
@@ -358,6 +399,7 @@ footer a:hover { color: #b77831; }
   }
   .navToggle { display: flex; }
   .rankedGrid { grid-template-columns: 1fr; }
+  .shopGrid { grid-template-columns: 1fr; }
   .formRow { flex-direction: column; gap: 10px; }
   .waitlistForm { gap: 10px; }
   .storyStats { grid-template-columns: repeat(3, 1fr); }
