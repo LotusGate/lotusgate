@@ -128,12 +128,6 @@ p  { line-height: 1.7; color: #4a3628; margin: 0 0 10px; }
 
 /* ── Story section ──────────────────────────────────────────── */
 /* ── Shop Our Coffees section ─────────────────────────────────── */
-.shopLineup {
-  border-radius: 28px; overflow: hidden;
-  margin-bottom: 28px;
-  box-shadow: 0 16px 44px rgba(75,45,25,.12);
-}
-.shopLineupImg { width: 100%; display: block; object-fit: cover; }
 .shopIntro { max-width: 680px; margin: 0 auto 28px; text-align: center; }
 .shopIntro h2 { margin: 10px 0 8px; }
 .shopGrid {

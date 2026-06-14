@@ -239,13 +239,6 @@ function App() {
 
       {/* ── Shop Our Coffees ──────────────────────────────── */}
       <section className="section shopSection" id="shop">
-        <div className="shopLineup">
-          <img
-            src="/VietCoffLineup.png"
-            alt="The four VietCoff coffee bags side by side — Da Lat Arabica, Central Highlands Robusta, Saigon Phin Blend, and Hanoi Morning Blend"
-            className="shopLineupImg"
-          />
-        </div>
         <div className="shopIntro">
           <div className="eyebrow"><BagIcon /> Shop our coffees</div>
           <h2>Four single-origin profiles. One journey.</h2>
